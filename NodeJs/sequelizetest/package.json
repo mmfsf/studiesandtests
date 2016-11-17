@@ -1,0 +1,21 @@
+{
+  "name": "sequelizetest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcos",
+  "license": "MIT",
+  "dependencies": {
+    "apidoc": "^0.13.1",
+    "express": "^4.13.3",
+    "sequelize": "^3.14.1",
+    "tedious": "^1.13.1"
+  },
+  "apidoc": {
+    "title": "apiDoc for MassTimes project",
+    "url" : ""
+  }
+}
