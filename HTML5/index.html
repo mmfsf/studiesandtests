@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<!--<html manifest="/cache.manifest">-->
+<html>
+<script type="text/javascript">
+    var CreateWebSocket = function() {
+        var namesocket = document.getElementById('txtNameSocket').value;
+        
+        var ws = new WebSocket('ws://172.24.15.236:8080/unsapi/location/1/abc/pres:'+namesocket+'@abc');
+
+        ws.onopen = function()
+        {
+        // Web Socket is connected, send data using send()
+        var textArea = document.getElementById('txaMessages');
+        textArea.value += "\n" + 'Connection is open';
+        };
+
+        ws.onmessage = function (evt)
+        {
+            var datetime = new Date();
+            var datetime_msg = datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+            var received_msg = JSON.parse(evt.data);
+            var divLinks = document.getElementById('divLinks');
+            var link = document.createElement('a');
+            link.id = received_msg.ID;
+            link.target = 'blank';
+            link.href = ''; //https://www.google.com/maps/place//@'+ received_msg.Latitude + ',' + received_msg.Longitude + ',3z';
+            link.innerText = datetime_msg + ' - ' + evt.data
+            divLinks.appendChild(document.createElement('br'));
+            divLinks.appendChild(link);
+        };
+
+        ws.onclose = function()
+        {
+            // websocket is closed.
+            var textArea = document.getElementById('txaMessages');
+            textArea.value += "\n" + 'Connection is closed';
+        };
+
+        var send = function() {
+            var text = document.getElementById('txtValue').value;
+            ws.send(text);
+            var textArea = document.getElementById('txaMessages');
+            textArea.value += "\n" + 'Message sent';
+        }
+    }
+
+</script>
+
+<body>
+    <input id="txtValue" type="text" value="" />
+    <input type="submit" onclick="send()" value="Send" />
+    <div>
+        <br/>
+        <textarea id="txaMessages" style="width: 400px; height: 100px;"></textarea>
+    </div>
+
+    <input id="txtNameSocket" placeholder="Socket name" type="text" value="" />
+    <input type="submit" onclick="CreateWebSocket()" value="Open Socket" />
+
+    <div id="divLinks">
+
+    </div>
+</body>
+
+</html>
