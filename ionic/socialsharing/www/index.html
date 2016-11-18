@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
+
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+
+  <script src="../plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js"></script>
+
+  <!-- your app's js -->
+  <script src="js/app.js"></script>
+</head>
+
+<body ng-app="starter">
+
+  <ion-pane>
+    <ion-header-bar class="bar-stable bar-dark">
+      <h1 class="title">Sharing!!</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="row">
+        <div class="col">
+          <button class="button button-black" onclick="window.plugins.socialsharing.share('Message only')">message only</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="button button-light" onclick="window.plugins.socialsharing.share('Message and subject', 'The subject')">message and subject</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="button button-stable" onclick="window.plugins.socialsharing.share(null, null, null, 'http://www.x-services.nl')">link only</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="button button-positive" onclick="window.plugins.socialsharing.share('Message and link', null, null, 'http://www.x-services.nl')">message and link</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="button button-calm" onclick="window.plugins.socialsharing.share(null, null, 'https://www.google.nl/images/srpr/logo4w.png', null)">image only</button>
+        </div>
+      </div>
+      <!--
+        // Beware: passing a base64 file as 'data:' is not supported on Android 2.x: https://code.google.com/p/android/issues/detail?id=7901#c43
+        // Hint: when sharing a base64 encoded file on Android you can set the filename by passing it as the subject (second
+           param) 
+       -->
+      <div class="row">
+        <div class="col">
+          <button class="button button-balanced" onclick="window.plugins.socialsharing.share(null, 'Android filename', 'data:image/png;base64,R0lGODlhDAAMALMBAP8AAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAUKAAEALAAAAAAMAAwAQAQZMMhJK7iY4p3nlZ8XgmNlnibXdVqolmhcRQA7', null">base64 image only</button>
+        </div>
+      </div>
+      <!--
+        // Hint: you can share multiple files by using an array as thirds param: ['file 1','file 2', ..], but beware of this Android
+           Kitkat Facebook issue: [#164]
+      -->
+      <div class="row">
+        <div class="col">
+          <button class="button button-energized" onclick="window.plugins.socialsharing.share('Message and image', null, 'https://www.google.nl/images/srpr/logo4w.png', null)">message and image</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="button button-assertive" onclick="window.plugins.socialsharing.share('Message, image and link', null, 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')">message, image and link</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="button button-royal" onclick="window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')">message, subject, image and link</button>
+        </div>
+      </div>
+    </ion-content>
+  </ion-pane>
+</body>
+
+</html>
